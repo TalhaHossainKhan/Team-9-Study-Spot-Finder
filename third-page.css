@@ -1,0 +1,20 @@
+.fixed-table-loading {
+    visibility: hidden;
+    top: 0px;
+    display: none;
+}
+
+.loading-wrap {
+    visibility: hidden;
+    display: none;
+}
+
+.table-loading {
+    visibility: hidden;
+    display: none;
+}
+
+.loading {
+    visibility: hidden;
+    display: none;
+}
