@@ -38,7 +38,7 @@
 
 <body style="background-color:rgb(216, 236, 239);">
     <div class="jumbotron text-center" style="background-color:rgb(164, 214, 222);">
-        <h1>McKeldin Study Spaces</h1>
+        <h1>STEM Study Spaces</h1>
     </div>
     <form>
         <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
@@ -514,10 +514,10 @@
             }
         ];
 
-        const reversableData = jsonData.filter(item => item.building == 'McKeldin');
+        const reversableData = jsonData.filter(item => item.building == 'STEM');
 
         $(document).ready(function () {
- 
+
             $('#reversableData').bootstrapTable({
                 data: reversableData,
                 columns: [{}, {}, {}, 
@@ -635,7 +635,7 @@
             }                        
 
             var filteredData = jsonData.filter(item => 
-                item.building == 'McKeldin' 
+                item.building == 'STEM' 
             && (item.reservable_true == reservable
             || item.reservable_true == nonReservable)
             );

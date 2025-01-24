@@ -18,3 +18,7 @@
     visibility: hidden;
     display: none;
 }
+
+.label-color {
+    color: darkcyan;
+}
