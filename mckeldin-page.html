@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.x.x/font/bootstrap-icons.css"> 
+    <link href='https://fonts.googleapis.com/css?family=Andada Pro' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="third-page.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <style>
+        body {
+            font-family: 'Andada Pro';
+            font-size: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .img-container {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body style="background-color:#f0f8ff;">
+    <div class="jumbotron text-center" style="background-color:#0b7594;">
+        <h1>McKeldin Study Spaces</h1>
+    </div>
+    <form>
+        <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" checked="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    Reservable
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" checked="" id="defaultCheck2">
+                <label class="form-check-label" for="defaultCheck2">
+                    Non-reservable
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" checked="checked" id="defaultCheck3">
+                <label class="form-check-label" for="defaultCheck3">
+                    Individual Study
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" checked="checked" id="defaultCheck4">
+                <label class="form-check-label" for="defaultCheck4">
+                    Group Study
+                </label>
+            </div>
+    
+        </div>
+        <div class="container" style="padding-bottom: 50px;">
+            <button type="button" id="submitBtnId" class="btn-primary" style="margin-right: 30px;">Submit</button>
+            <button type="button" id="allBtnId" class="btn-primary">Show All</button>
+        </div>
+        
+    </form>
+
+
+    <div class="container">
+        <table id="reversableData" class="table-striped border-success">
+            <thead>
+                <tr>
+                    <th data-field="room">
+                        <span class="label-color">
+                            Room
+                        </span>
+                    </th>
+                    <th data-field="floor">
+                        <span class="label-color">
+                            Floor(s)
+                        </span>
+                    </th>
+                    <th data-field="capacity">
+                        <span class="label-color">
+                            Capacity
+                        </span>
+                    </th>
+                    <th data-field="individual_true">
+                        <span class="label-color">
+                            Individual
+                        </span>
+                    </th>
+                    <th data-field="group_true">
+                        <span class="label-color">
+                            Group
+                        </span>
+                    </th>                                        
+                    <th data-field="reservable_true">
+                        Reserve
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+     
+     var jsonData = [
+            {
+                "space_id": 1,
+                "room": "Carrels",
+                "floor": "4th, 6th, 7th",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "4",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 2,
+                "room": "Faculty Office",
+                "floor": "7th",
+                "building": "McKeldin",
+                "capacity": "1-4",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 3,
+                "room": "Focus Room",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "4",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 4,
+                "room": "Memory Lab",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "1-2",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 5,
+                "room": "One Button Studio",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 6,
+                "room": "Podcasting Lab",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 7,
+                "room": "TLC Group Study Rooms",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "3-8",
+                "max_time_hours": "2",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 8,
+                "room": "Conversation Room",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "2",
+                "max_time_hours": "4",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 9,
+                "room": "Family Study Room",
+                "floor": "3rd",
+                "building": "McKeldin",
+                "capacity": "1-6",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 10,
+                "room": "Portico",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "29",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 11,
+                "room": "Carrels",
+                "floor": "3rd",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 12,
+                "room": "Lactation Room",
+                "floor": "3rd",
+                "building": "McKeldin",
+                "capacity": "1 + children",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 13,
+                "room": "McKeldin Alcoves",
+                "floor": "6th, 7th",
+                "building": "McKeldin",
+                "capacity": "2 per alcove",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 14,
+                "room": "McKeldin Computer Area",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "119",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 15,
+                "room": "Periodicals Room",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 16,
+                "room": "McKeldin Elevator Lobbies (Back Wing)",
+                "floor": "6th, 7th",
+                "building": "McKeldin",
+                "capacity": "1 per pod",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 17,
+                "room": "McKeldin Elevator Lobbies (Front Wing)",
+                "floor": "6th, 7th",
+                "building": "McKeldin",
+                "capacity": "8",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 18,
+                "room": "Graduate Student Study Area",
+                "floor": "3rd",
+                "building": "McKeldin",
+                "capacity": "13",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 19,
+                "room": "Portico Room",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "32-60",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 20,
+                "room": "Quiet Study Room",
+                "floor": "1st",
+                "building": "McKeldin",
+                "capacity": "15",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 21,
+                "room": "Reading Room",
+                "floor": "4th",
+                "building": "McKeldin",
+                "capacity": "116",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 22,
+                "room": "Reflection Space",
+                "floor": "3rd",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 23,
+                "room": "Special Events Room",
+                "floor": "6th",
+                "building": "McKeldin",
+                "capacity": "130-200",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 24,
+                "room": "Terrapin Learning Commons",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "1",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 25,
+                "room": "TLC Workshop & Meeting Room",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "8-25",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 26,
+                "room": "TLC Workshop & Meeting Room (with Virtual Meeting Option)",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "8-15",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 27,
+                "room": "TLC Workshop & Meeting Room (Large)",
+                "floor": "2nd",
+                "building": "McKeldin",
+                "capacity": "8-35",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 28,
+                "room": "Carver Room",
+                "floor": "3rd",
+                "building": "STEM",
+                "capacity": "2-10",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 29,
+                "room": "Chatelet Room",
+                "floor": "3rd",
+                "building": "STEM",
+                "capacity": "2-6",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 30,
+                "room": "Einstein Room",
+                "floor": "3rd",
+                "building": "STEM",
+                "capacity": "2-5",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 31,
+                "room": "JSG Makerspace",
+                "floor": "1st",
+                "building": "STEM",
+                "capacity": "1-12",
+                "max_time_hours": "None",
+                "individual_true": 1,
+                "group_true": 1,
+                "reservable_true": 1
+            },
+            {
+                "space_id": 32,
+                "room": "STEM Computer Area",
+                "floor": "1st",
+                "building": "STEM",
+                "capacity": "34",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 33,
+                "room": "STEM Group Study Areas",
+                "floor": "Ground, 3rd",
+                "building": "STEM",
+                "capacity": "217",
+                "max_time_hours": "0",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 34,
+                "room": "STEM Individual Study Areas",
+                "floor": "1st, 2nd",
+                "building": "STEM",
+                "capacity": "209 (4-8 per table)",
+                "max_time_hours": "0",
+                "individual_true": 1,
+                "group_true": 0,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 35,
+                "room": "STEM Multi-purpose Room",
+                "floor": "1st",
+                "building": "STEM",
+                "capacity": "30",
+                "max_time_hours": "0",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 0
+            },
+            {
+                "space_id": 36,
+                "room": "Tesla Room",
+                "floor": "3rd",
+                "building": "STEM",
+                "capacity": "2-10",
+                "max_time_hours": "None",
+                "individual_true": 0,
+                "group_true": 1,
+                "reservable_true": 1
+            }
+        ];
+
+        const reversableData = jsonData.filter(item => item.building == 'McKeldin');
+
+        $(document).ready(function () {
+ 
+            $('#reversableData').bootstrapTable({
+                data: reversableData,
+                columns: [{}, {}, {}, 
+                {
+                    field: 'individual_true',
+                    title: 'Individual',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.individual_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                }, 
+                {
+                    field: 'group_true',
+                    title: 'Group',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.group_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                },
+                {
+                    field: 'reservable_true',
+                    title: '',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.reservable_true == 1) {
+                            return '<button class=\'btn btn-primary \'>Reserve</button> ';
+                        } 
+                    }
+                }]
+            });
+        });
+        
+        const showAllButton = document.getElementById("allBtnId");
+
+        showAllButton.addEventListener("click", function() {
+            $('#reversableData').bootstrapTable('destroy');
+            $('#reversableData').bootstrapTable({
+                data: reversableData,
+                columns: [{}, {}, {}, 
+                {
+                    field: 'individual_true',
+                    title: 'Individual',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.individual_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                }, 
+                {
+                    field: 'group_true',
+                    title: 'Group',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.group_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                },
+                {
+                    field: 'reservable_true',
+                    title: '',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.reservable_true == 1) {
+                            return '<button class=\'btn btn-primary \'>Reserve</button> ';
+                        } 
+                    }
+                }]
+            });
+        });
+
+        const submitButton = document.getElementById("submitBtnId");
+
+        submitButton.addEventListener("click", function() {
+
+            // read checkbox values
+            var resVal = $('#defaultCheck1:checked').val();
+            var nonResVal = $('#defaultCheck2:checked').val();
+            var indVal = $('#defaultCheck3:checked').val();
+            var groupVal = $('#defaultCheck4:checked').val();
+
+            var reservable = 0;
+            var nonReservable = 1;
+            var individual = 0;
+            var group = 0;
+
+            if (resVal == 'on') {
+                reservable = 1;
+            }
+            if (nonResVal == 'on') {
+                nonReservable = 0;
+            }
+            if (indVal == 'on') {
+                individual = 1;
+            }
+            if (groupVal == 'on') {
+                group = 1;
+            }                        
+
+            var filteredData = jsonData.filter(item => 
+                item.building == 'McKeldin' 
+            && (item.reservable_true == reservable
+            || item.reservable_true == nonReservable)
+            );
+        
+            var filteredDataFinal;
+
+            if (individual == 1 || group == 1) { 
+                filteredDataFinal = filteredData.filter(item =>
+                                    (item.individual_true == individual
+                                         && item.group_true == group)
+                                 );
+            } else {
+                filteredDataFinal = filteredData;
+            }
+        
+            console.log(filteredData);
+            console.log(resVal + ' ' + nonResVal + ' ' + indVal + ' ' + groupVal);
+            $('#reversableData').bootstrapTable('destroy');
+            $('#reversableData').bootstrapTable({
+                data: filteredDataFinal,
+                columns: [{}, {}, {}, 
+                {
+                    field: 'individual_true',
+                    title: 'Individual',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.individual_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                }, 
+                {
+                    field: 'group_true',
+                    title: 'Group',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.group_true == 1) {
+                            return '<i class="bi bi-check-lg"></i>';
+                        } 
+                    }
+                },
+                {
+                    field: 'reservable_true',
+                    title: '',
+                    align: 'center',
+                    valign: 'middle',
+                    clickToSelect: false,
+                    formatter: function (value, row, index) {
+                        if (row.reservable_true == 1) {
+                            return '<button class=\'btn btn-primary \'>Reserve</button> ';
+                        } 
+                    }
+                }]
+            });
+        });
+
+ 
+    </script>
+
+</body>
+
+</html>
