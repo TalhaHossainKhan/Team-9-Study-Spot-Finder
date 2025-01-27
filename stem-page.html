@@ -682,17 +682,17 @@
                     }
                 },
                 {
-                    field: 'reservable_true',
-                    title: '',
-                    align: 'center',
-                    valign: 'middle',
-                    clickToSelect: false,
-                    formatter: function (value, row, index) {
-                        if (row.reservable_true == 1) {
-                            return '<button class=\'btn btn-primary \'>Reserve</button> ';
-                        } 
-                    }
-                }]
+    field: 'reservable_true',
+    title: '',
+    align: 'center',
+    valign: 'middle',
+    clickToSelect: false,
+    formatter: function (value, row, index) {
+        if (row.reservable_true == 1) {
+            return '<button class="btn btn-primary" onclick="window.location.href=\'<table>.html\'">Reserve</button>';
+        }
+    }
+}]
             });
         });
 
