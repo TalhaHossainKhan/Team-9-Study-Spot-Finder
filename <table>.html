@@ -1,102 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Availability Schedule</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 60%;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Availability Schedule</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      margin: 0 auto 40px;
+      table-layout: fixed;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .occupied {
+      background-color: #c0392b;
+      color: white;
+    }
+
+    .available {
+      background-color: #27ae60;
+      color: white;
+    }
+
+    .time-col {
+      background-color: #ecf0f1;
+      font-weight: bold;
+    }
+
+    .room-name {
+      text-align: left;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Daily Availability Schedule</h1>
-    <table>
-        <tr>
-            <th>Time</th>
-            <th>Availability</th>
-        </tr>
-        <tr>
-            <td>8:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>9:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>10:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>11:00</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td>12:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>13:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>14:00</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td>15:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>16:00</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td>17:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>18:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>19:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>20:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>21:00</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td>22:00</td>
-            <td>Occupied</td>
-        </tr>
-        <tr>
-            <td>23:00</td>
-            <td>Available</td>
-        </tr>
-    </table>
+  <h1>Daily Availability Schedule</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Room</th>
+        <th>7:00PM</th>
+        <th>8:00PM</th>
+        <th>9:00PM</th>
+        <th>10:00PM</th>
+        <th>11:00PM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="room-name">Room 2100A</td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+      </tr>
+      <tr>
+        <td class="room-name">Room 2100B</td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+      </tr>
+      <tr>
+        <td class="room-name">Room 2100C</td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="available"></td>
+      </tr>
+      <tr>
+        <td class="room-name">Room 2100E</td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+      </tr>
+      <tr>
+        <td class="room-name">Room 2100K</td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="occupied"></td>
+        <td class="available"></td>
+        <td class="available"></td>
+      </tr>
+      <!-- Add more rooms as needed -->
+    </tbody>
+  </table>
 </body>
 </html>
